@@ -5,15 +5,14 @@ import java.net.URI;
 import org.glassfish.jersey.jdkhttp.JdkHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 
-import com.sun.net.httpserver.HttpServer;
-
 
 public class Main {
-
+	private final static String RESOURCES_PACKAGE = "teashop.resources";
+	private final static URI API_BASE_PATH = URI.create("http://localhost:8080/");
+	
 	public static void main(String[] args) {
 		DatabaseService.initEmFactory();
-
-	    ResourceConfig rc = new ResourceConfig().packages("teashop.resources");
-	    HttpServer server = JdkHttpServerFactory.createHttpServer(URI.create("http://localhost:8080/"), rc);
+	    ResourceConfig rc = new ResourceConfig().packages(RESOURCES_PACKAGE);
+	    JdkHttpServerFactory.createHttpServer(API_BASE_PATH, rc);
 	}
 }
