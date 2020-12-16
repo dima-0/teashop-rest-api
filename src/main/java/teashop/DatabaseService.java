@@ -1,15 +1,11 @@
 package teashop;
 
-import java.io.FileReader;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import java.util.Properties;
 import java.util.Random;
 
 import javax.persistence.EntityManager;
@@ -28,17 +24,7 @@ public class DatabaseService {
 	
 	public static void initEmFactory() {
 		if(emfactory == null) {
-			// Loading login data for database access.
-			Properties properties = new Properties();
-			try (FileReader reader = new FileReader("db.properties")){
-				properties.load(reader);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}	
-			Map<String, String> persistenceUnitProperties = new HashMap<>();
-			persistenceUnitProperties.put("javax.persistence.jdbc.user", properties.getProperty("user"));
-			persistenceUnitProperties.put("javax.persistence.jdbc.password", properties.getProperty("password"));
-			emfactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT, persistenceUnitProperties);
+			emfactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 			EntityManager em = emfactory.createEntityManager();
 			fillDatabase(em);
 			em.close();

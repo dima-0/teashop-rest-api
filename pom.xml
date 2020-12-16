@@ -85,11 +85,6 @@
         <version>1.2.0</version>
     </dependency>
     <dependency>
-        <groupId>com.nimbusds</groupId>
-        <artifactId>nimbus-jose-jwt</artifactId>
-        <version>6.8</version>
-    </dependency>
-    <dependency>
         <groupId>org.glassfish.jersey.test-framework</groupId>
         <artifactId>jersey-test-framework-core</artifactId>
         <version>2.27</version>
@@ -102,4 +97,16 @@
         <scope>test</scope>
     </dependency>
   </dependencies>
+  
+  <build>
+  	<filters>
+  		<filter>db.properties</filter>
+  	</filters>
+  	<resources>
+  		<resource>
+  			<directory>src/main/resources</directory>
+  			<filtering>true</filtering>
+  		</resource>
+  	</resources>
+  </build>
 </project>
